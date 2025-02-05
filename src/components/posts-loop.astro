@@ -1,12 +1,18 @@
 ---
 import { getCollection } from "astro:content"
+import { undefined } from "astro:schema"
 const allPosts = await getCollection("post")
+
+import dayjs from 'dayjs'
 
 const { count } = Astro.props
 
 function parseDate(dateStr) {
+  if (!dateStr) {
+    return new Date(dayjs().format('YYYY-MM-DD'))
+  }
   const [month, day, year] = dateStr.split(" ")
-  return new Date(`${month} ${parseInt(day)}, ${year}`)
+  return new Date(`${month} ${(day)}, ${year}`)
 }
 
 const sortedPosts = allPosts
@@ -115,7 +121,7 @@ function randomGradient() {
     return (
       <div
         style={`background: ${randomGradient()};`}
-        class="cursor-pointer group relative w-100 h-60 overflow-hidden rounded-lg shadow-md transition-transform duration-300 ease-in-out hover:scale-105"
+        class="cursor-pointer group relative w-100 h-[13rem] overflow-hidden rounded-lg shadow-md transition-transform duration-300 ease-in-out hover:scale-105"
         onclick={`location.href = '${post.link}'`}
       >
         <!-- 卡片背景图片
@@ -136,7 +142,7 @@ function randomGradient() {
           <h2 class="text-2xl font-bold mb-2">{post.title}</h2>
           <!-- 卡片描述 -->
           <p class="text-sm">
-            Posted on {post.dateFormatted}
+            Posted on {dayjs(post.dateFormatted||undefined).format('YYYY-MM-DD')}
           </p>
         </div>
       </div>

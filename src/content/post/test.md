@@ -1,7 +1,6 @@
 ---
-title: Browser locally uses AI to remove image backgrounds
+title: 每日收藏
 description: Browser locally uses AI to remove image backgrounds
-dateFormatted: Jul 14, 2024
 ---
 
 Yo, so I've been digging into this whole AI thing for front-end development lately, and stumbled upon this cool Transformers.js example.  Turned it into a sweet little tool, check it out!
